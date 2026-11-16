@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>타지키스탄 소개 | Tajikistan</title>
+    <style>
+        :root {
+            --tj-red: #cc0000;
+            --tj-green: #006600;
+            --tj-gold: #f8c300;
+            --dark: #1a1a2e;
+            --light: #f7f7f9;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', 'Malgun Gothic', sans-serif;
+            color: #333;
+            background: var(--light);
+            line-height: 1.7;
+        }
+
+        /* 헤더 / 내비게이션 */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(6px);
+        }
+        nav {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 24px;
+        }
+        .logo {
+            color: #fff;
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+        .logo span { color: var(--tj-gold); }
+        nav ul {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+        nav ul a {
+            color: #ddd;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+        nav ul a:hover { color: var(--tj-gold); }
+
+        /* 히어로 */
+        .hero {
+            position: relative;
+            min-height: 88vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            background:
+                linear-gradient(rgba(26, 26, 46, 0.55), rgba(26, 26, 46, 0.75)),
+                url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Pamir_Mountains%2C_Tajikistan%2C_06-04-2008.jpg/1280px-Pamir_Mountains%2C_Tajikistan%2C_06-04-2008.jpg') center/cover no-repeat;
+            padding: 40px 20px;
+        }
+        .hero .flag-bar {
+            display: flex;
+            width: 120px;
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 28px;
+        }
+        .flag-bar i { flex: 1; }
+        .flag-bar .r { background: var(--tj-red); }
+        .flag-bar .w { background: #fff; }
+        .flag-bar .g { background: var(--tj-green); }
+        .hero h1 {
+            font-size: clamp(2.4rem, 6vw, 4.2rem);
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+        .hero h2 {
+            font-size: clamp(1rem, 2.5vw, 1.4rem);
+            font-weight: 400;
+            color: var(--tj-gold);
+            margin-bottom: 24px;
+        }
+        .hero p {
+            max-width: 640px;
+            font-size: 1.05rem;
+            color: #eee;
+            margin-bottom: 36px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 13px 34px;
+            border-radius: 30px;
+            background: var(--tj-red);
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s, background 0.2s;
+        }
+        .btn:hover { background: #a80000; transform: translateY(-2px); }
+
+        /* 섹션 공통 */
+        section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 80px 24px;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 12px;
+            color: var(--dark);
+        }
+        .section-sub {
+            text-align: center;
+            color: #777;
+            margin-bottom: 48px;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            margin: 14px auto 0;
+            background: linear-gradient(90deg, var(--tj-red), var(--tj-gold), var(--tj-green));
+            border-radius: 2px;
+        }
+
+        /* 국가 정보 카드 */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+        .info-card {
+            background: #fff;
+            border-radius: 14px;
+            padding: 28px 22px;
+            text-align: center;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.07);
+            transition: transform 0.2s;
+        }
+        .info-card:hover { transform: translateY(-5px); }
+        .info-card .icon { font-size: 2.2rem; margin-bottom: 12px; }
+        .info-card h3 { font-size: 0.95rem; color: #888; font-weight: 500; margin-bottom: 6px; }
+        .info-card p { font-size: 1.15rem; font-weight: 700; color: var(--dark); }
+
+        /* 명소 */
+        .places {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 26px;
+        }
+        .place-card {
+            background: #fff;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+            transition: transform 0.2s;
+        }
+        .place-card:hover { transform: translateY(-5px); }
+        .place-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+        .place-card .body { padding: 22px; }
+        .place-card h3 { margin-bottom: 8px; color: var(--dark); }
+        .place-card p { font-size: 0.93rem; color: #666; }
+
+        /* 문화 & 음식 */
+        .culture-wrap {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            align-items: start;
+        }
+        .culture-box h3 {
+            font-size: 1.3rem;
+            margin-bottom: 16px;
+            color: var(--tj-red);
+        }
+        .culture-box ul { list-style: none; }
+        .culture-box li {
+            background: #fff;
+            border-left: 4px solid var(--tj-gold);
+            border-radius: 8px;
+            padding: 14px 18px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        .culture-box li strong { color: var(--dark); }
+
+        /* 푸터 */
+        footer {
+            background: var(--dark);
+            color: #bbb;
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.9rem;
+        }
+        footer .flag-bar {
+            display: flex;
+            width: 90px;
+            height: 6px;
+            border-radius: 3px;
+            overflow: hidden;
+            margin: 0 auto 18px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">타지키스탄 <span>Тоҷикистон</span></a>
+            <ul>
+                <li><a href="#about">국가 정보</a></li>
+                <li><a href="#places">주요 명소</a></li>
+                <li><a href="#culture">문화와 음식</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <div class="flag-bar"><i class="r"></i><i class="w"></i><i class="g"></i></div>
+        <h1>타지키스탄</h1>
+        <h2>중앙아시아의 지붕, 파미르의 나라</h2>
+        <p>
+            국토의 90% 이상이 산지인 타지키스탄은 '세계의 지붕'이라 불리는
+            파미르 고원을 품은 나라입니다. 실크로드의 오랜 역사와 페르시아 문화의
+            향기가 살아 숨 쉬는 매력적인 여행지를 소개합니다.
+        </p>
+        <a href="#about" class="btn">더 알아보기</a>
+    </div>
+
+    <section id="about">
+        <h2 class="section-title">국가 정보</h2>
+        <p class="section-sub">타지키스탄 공화국 (Republic of Tajikistan, Ҷумҳурии Тоҷикистон)</p>
+        <div class="info-grid">
+            <div class="info-card">
+                <div class="icon">🏛️</div>
+                <h3>수도</h3>
+                <p>두샨베 (Dushanbe)</p>
+            </div>
+            <div class="info-card">
+                <div class="icon">🗣️</div>
+                <h3>공용어</h3>
+                <p>타지크어</p>
+            </div>
+            <div class="info-card">
+                <div class="icon">👥</div>
+                <h3>인구</h3>
+                <p>약 1,000만 명</p>
+            </div>
+            <div class="info-card">
+                <div class="icon">🗺️</div>
+                <h3>면적</h3>
+                <p>143,100 km²</p>
+            </div>
+            <div class="info-card">
+                <div class="icon">💰</div>
+                <h3>통화</h3>
+                <p>소모니 (TJS)</p>
+            </div>
+            <div class="info-card">
+                <div class="icon">⛰️</div>
+                <h3>최고봉</h3>
+                <p>이스모일 소모니 봉 (7,495m)</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="places">
+        <h2 class="section-title">주요 명소</h2>
+        <p class="section-sub">대자연이 빚어낸 타지키스탄의 절경을 만나보세요</p>
+        <div class="places">
+            <div class="place-card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Pamir_Mountains%2C_Tajikistan%2C_06-04-2008.jpg/640px-Pamir_Mountains%2C_Tajikistan%2C_06-04-2008.jpg" alt="파미르 고원">
+                <div class="body">
+                    <h3>파미르 고원 (Pamir Mountains)</h3>
+                    <p>'세계의 지붕'이라 불리는 해발 4,000m급 고원 지대. 파미르 하이웨이(M41)를 따라 펼쳐지는 풍경은 세계 최고의 드라이브 코스로 꼽힙니다.</p>
+                </div>
+            </div>
+            <div class="place-card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Iskanderkul%2C_Tajikistan.jpg/640px-Iskanderkul%2C_Tajikistan.jpg" alt="이스칸데르쿨 호수">
+                <div class="body">
+                    <h3>이스칸데르쿨 호수 (Iskanderkul)</h3>
+                    <p>알렉산더 대왕의 전설이 깃든 에메랄드빛 산정 호수. 타지키스탄에서 가장 아름다운 호수 중 하나로 트레킹 명소입니다.</p>
+                </div>
+            </div>
+            <div class="place-card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Dushanbe_panorama_07.jpg/640px-Dushanbe_panorama_07.jpg" alt="두샨베">
+                <div class="body">
+                    <h3>두샨베 (Dushanbe)</h3>
+                    <p>'월요일'이라는 뜻의 수도. 웅장한 국립박물관, 루다키 공원, 세계에서 두 번째로 높은 국기 게양대가 있는 도시입니다.</p>
+                </div>
+            </div>
+            <div class="place-card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Khujand%2C_Tajikistan_-_panoramio.jpg/640px-Khujand%2C_Tajikistan_-_panoramio.jpg" alt="후잔드">
+                <div class="body">
+                    <h3>후잔드 (Khujand)</h3>
+                    <p>실크로드의 고대 도시. 시르다리야 강변의 요새와 활기 넘치는 판샨베 바자르에서 오랜 역사를 느낄 수 있습니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="culture">
+        <h2 class="section-title">문화와 음식</h2>
+        <p class="section-sub">페르시아 문화권의 전통이 살아 있는 나라</p>
+        <div class="culture-wrap">
+            <div class="culture-box">
+                <h3>🎭 문화</h3>
+                <ul>
+                    <li><strong>나브루즈(Navruz)</strong> — 봄의 시작을 축하하는 최대 명절 (3월 21일)</li>
+                    <li><strong>페르시아 문화권</strong> — 타지크어는 페르시아어의 방언으로, 루다키·피르다우시 등 페르시아 문학의 고향</li>
+                    <li><strong>실크로드 유산</strong> — 사라즈므 유적 등 유네스코 세계문화유산 보유</li>
+                    <li><strong>전통 음악과 춤</strong> — 샤쉬마캄(Shashmaqam) 음악은 유네스코 무형문화유산</li>
+                </ul>
+            </div>
+            <div class="culture-box">
+                <h3>🍽️ 음식</h3>
+                <ul>
+                    <li><strong>오쉬(Osh / Plov)</strong> — 쌀, 양고기, 당근으로 만든 대표 볶음밥 요리</li>
+                    <li><strong>쿠루톱(Qurutob)</strong> — 소금 치즈 볼 '쿠루트'를 빵과 함께 먹는 국민 음식</li>
+                    <li><strong>삼부사(Sambusa)</strong> — 고기나 채소를 넣어 구운 삼각 만두</li>
+                    <li><strong>차이(Chai)</strong> — 차이하나(찻집) 문화가 발달한 녹차 문화</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="flag-bar"><i class="r"></i><i class="w"></i><i class="g"></i></div>
+        <p>타지키스탄 소개 페이지 | Discover Tajikistan — The Roof of the World</p>
+    </footer>
+</body>
+</html>
